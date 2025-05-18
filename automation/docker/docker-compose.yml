@@ -1,0 +1,36 @@
+version: '3.9'
+
+services:
+  frontend:
+    image: 10.10.0.222:5000/storaged-products-frontend:1.0.0
+    container_name: frontend
+    ports:
+      - "4200:8080"
+    networks:
+      - central-application
+    depends_on:
+      - backend
+    environment:
+      - BASIC_TOKEN=${BASIC_TOKEN}
+
+  backend:
+    image: 10.10.0.222:5000/storaged-products-backend:1.0.0
+    container_name: backend
+    ports:
+      - "8080:8080"
+    networks:
+      - central-application
+    environment:
+      - DB_USER_NAME=${DB_USER_NAME}
+      - DB_USER_PASSWORD=${DB_USER_PASSWORD}
+      - DISCORD_BOT_TOKEN=${DISCORD_BOT_TOKEN}
+      - USER_ID=${USER_ID}
+      - DATABASE_URL=${DATABASE_URL}
+      - BASIC_TOKEN=${BASIC_TOKEN}
+
+volumes:
+  db_data:
+
+networks:
+  central-application:
+    driver: bridge
