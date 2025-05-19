@@ -1,0 +1,8 @@
+docker run -i --rm \
+  --network=host \
+  -e DB_USER_NAME=postgres \
+  -e DB_USER_PASSWORD= \
+  -e DATABASE_URL=jdbc:postgresql://localhost:5432/postgres \
+  -e DISCORD_BOT_TOKEN= \
+  -e USER_ID= \
+  10.10.0.222:5000/storaged-products-backend:2.0.0
