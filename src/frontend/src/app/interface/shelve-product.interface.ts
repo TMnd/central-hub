@@ -12,3 +12,7 @@ export interface ShelveProductTable extends ShelveProduct {
     daysLeft: number
 }
 
+export interface ShelveProductCount {
+    productName: string
+    productCount: number
+}

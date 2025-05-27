@@ -1,7 +1,7 @@
 #!/bin/bash
 set -x
 
-VERSION=1.0.0
+VERSION=1.1.0
 APPLICATION_NAME=storaged-products
 PUSH=false
 

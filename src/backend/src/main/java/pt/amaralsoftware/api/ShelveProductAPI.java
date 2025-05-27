@@ -10,6 +10,7 @@ import org.jboss.resteasy.reactive.RestResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pt.amaralsoftware.models.DTO.ShelveProductDTO;
+import pt.amaralsoftware.models.ProductCount;
 import pt.amaralsoftware.service.ShelveProductService;
 import pt.amaralsoftware.util.JSONSerializer;
 
@@ -22,6 +23,14 @@ public class ShelveProductAPI {
 
     @Inject
     ShelveProductService shelveProductService;
+
+    @GET
+    @Path("/productStatistics")
+    @Produces(MediaType.APPLICATION_JSON)
+    public RestResponse<List<ProductCount>> getShelveProductStatistics() {
+        List<ProductCount> productStatistics = this.shelveProductService.getProductStatistics();
+        return RestResponse.ok(productStatistics);
+    }
 
     @POST
     @Path("/product")

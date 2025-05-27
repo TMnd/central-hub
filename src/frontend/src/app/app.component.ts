@@ -19,8 +19,9 @@ import {Subscription} from 'rxjs';
 import {MatDialog} from '@angular/material/dialog';
 import {ConfirmationModalComponent} from './ui/confirmation-modal/confirmation-modal.component';
 import {InternalizationPipe} from './pipes/i18n.pipe';
-import {I18nService} from "./services/i18n.service"
-import {ApplicationConfigurations} from './services/application-configurations.service';
+import {I18nService} from "./services/i18n.service";
+import {StatisticsPanelComponent} from './ui/statistics-panel/statistics-panel.component';
+import {StatisticsPanelService} from './ui/statistics-panel/statistics-panel.service';
 
 @Component({
     selector: 'app-root',
@@ -32,7 +33,8 @@ import {ApplicationConfigurations} from './services/application-configurations.s
         MatSidenavContainer,
         MatSidenav,
         FormComponent,
-        InternalizationPipe
+        InternalizationPipe,
+        StatisticsPanelComponent
     ],
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss',
@@ -41,12 +43,12 @@ import {ApplicationConfigurations} from './services/application-configurations.s
     providers: [
         TableService,
         ShelveProductService,
-        SideNavService
+        SideNavService,
+        StatisticsPanelService
     ]
 })
 export class AppComponent implements OnDestroy {
-    title = 'shelve-product';
-
+    private readonly statisticsPanelService = inject(StatisticsPanelService);
     private readonly tableService = inject(TableService);
     private readonly sideNavService = inject(SideNavService);
     private readonly shelveProductService = inject(ShelveProductService);
@@ -115,7 +117,7 @@ export class AppComponent implements OnDestroy {
                 for (let product of selectedProducts) {
                     this.shelveProductService.removeProduct(product.code).then(
                         () => {
-
+                            this.statisticsPanelService.getStatistics();
                             this.tableService.dataSource.set(this.tableService.dataSource().filter(shelveProduct => shelveProduct.code !== product.code));
                             this.toastr.success(`Product "${product.code}" was removed.`, '', {
                                 positionClass: 'toast-bottom-left'

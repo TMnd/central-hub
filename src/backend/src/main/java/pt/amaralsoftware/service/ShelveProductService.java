@@ -5,6 +5,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import pt.amaralsoftware.models.DTO.ShelveProductDTO;
+import pt.amaralsoftware.models.ProductCount;
 import pt.amaralsoftware.models.entity.CatShelveProductEntity;
 import pt.amaralsoftware.repository.ShelveProductRepository;
 
@@ -40,6 +41,10 @@ public class ShelveProductService {
                 insertDateFormatted,
                 shelvedProduct.getDescription()
         );
+    }
+
+    public List<ProductCount> getProductStatistics() {
+        return this.shelveProductRepository.findGroupedProductSummaries();
     }
 
     @Transactional

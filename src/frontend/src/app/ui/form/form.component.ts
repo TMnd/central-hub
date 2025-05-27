@@ -8,11 +8,12 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatDatepicker, MatDatepickerInput, MatDatepickerToggle} from '@angular/material/datepicker';
 import {provideNativeDateAdapter} from '@angular/material/core';
 import {ShelveProductService} from '../../data-source/shelve-product.service';
-import {ShelveProduct} from '../../interface/shelve-product.interface';
+import {ShelveProduct, ShelveProductCount} from '../../interface/shelve-product.interface';
 import {TableService} from '../table/table.service';
 import {ToastrService} from 'ngx-toastr';
 import {SideNavService} from '../../services/side-nav.service';
 import {InternalizationPipe} from '../../pipes/i18n.pipe';
+import {StatisticsPanelService} from '../statistics-panel/statistics-panel.service';
 
 @Component({
     selector: 'app-form-component',
@@ -47,7 +48,7 @@ export class FormComponent {
     private readonly tableService = inject(TableService);
     private readonly sideNavService = inject(SideNavService);
     private readonly toastr = inject(ToastrService);
-    private readonly elementRef = inject(ElementRef);
+    private readonly statisticsPanelService = inject(StatisticsPanelService);
 
     protected today: Date = new Date();
 
@@ -102,6 +103,7 @@ export class FormComponent {
                     }
                     const updatedShelveProducts = [...shelveProducts, shelveProduct];
                     this.tableService.dataSource.set(updatedShelveProducts);
+                    this.statisticsPanelService.getStatistics();
                     this.toastr.success(`Product "${shelveProduct.code}" was added successfully.`, '', {
                         positionClass: 'toast-bottom-left'
                     });

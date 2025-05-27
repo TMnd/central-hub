@@ -116,7 +116,6 @@ export class TableComponent {
 
     selection = this.tableService.selection
 
-    // isLoadingResults = signal<boolean>(true);
     isLoadingResults = this.tableService.isLoadingResults;
 
     constructor() {

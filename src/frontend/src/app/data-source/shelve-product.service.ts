@@ -1,7 +1,7 @@
 import {inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {firstValueFrom, shareReplay} from 'rxjs';
-import {ShelveProduct} from '../interface/shelve-product.interface';
+import {ShelveProduct, ShelveProductCount} from '../interface/shelve-product.interface';
 
 @Injectable()
 export class  ShelveProductService {
@@ -22,6 +22,10 @@ export class  ShelveProductService {
 
     public updateProduct(code: string, payload: ShelveProduct) {
         return firstValueFrom(this.httpClient.patch<ShelveProduct>(`/shelve/api/product/${code}`, payload));
+    }
+
+    public getStatistics() {
+        return firstValueFrom(this.httpClient.get<ShelveProductCount[]>("/shelve/api/productStatistics/"));
     }
 
 }

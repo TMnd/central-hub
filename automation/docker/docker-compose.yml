@@ -2,7 +2,7 @@ version: '3.9'
 
 services:
   frontend:
-    image: 10.10.0.222:5000/storaged-products-frontend:1.0.0
+    image: 10.10.0.222:5000/storaged-products-frontend:1.1.0
     container_name: frontend
     ports:
       - "4200:8080"
@@ -14,7 +14,7 @@ services:
       - BASIC_TOKEN=${BASIC_TOKEN}
 
   backend:
-    image: 10.10.0.222:5000/storaged-products-backend:1.0.0
+    image: 10.10.0.222:5000/storaged-products-backend:1.1.0
     container_name: backend
     ports:
       - "8080:8080"

@@ -26,5 +26,6 @@
     "remove.one.product": "Are you sure you want to remove the product?",
     "remove.multi.product": "Are you sure you want to remove the products %s?",
     "remove.shelve.product": "Delete products",
-    "add.shelve.product": "Add products"
+    "add.shelve.product": "Add products",
+    "statistic.header": "Products Counter"
 }

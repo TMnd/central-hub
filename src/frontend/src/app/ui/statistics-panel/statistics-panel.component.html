@@ -1,0 +1,16 @@
+<mat-accordion>
+    <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
+        <mat-expansion-panel-header>
+            <mat-panel-title> {{ 'statistic.header' | translate}} </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="stats-table">
+            @for(statistic of statistics(); track statistic.barCode) {
+                <div class="stat">
+                    <h3>{{ statistic.productName }}</h3>
+                    <p>{{ statistic.productCount }}</p>
+                </div>
+            }
+        </div>
+    </mat-expansion-panel>
+</mat-accordion>
+

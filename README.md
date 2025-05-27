@@ -6,6 +6,14 @@ Tried the open project route, but... yeah, doesn’t give me a 100% perfect solu
 So here we go — time to build things my way! 🛠️💥🛠️
 
 # 📦 Patch Notes
+## v1.1.0 (2025-05-27)
+
+### 🧩 Angular Frontend
+- Added product counters
+- 
+### 🧬 Quarkus API
+- Added product counters endpoint.
+
 ## v1.0.0 (2025-05-17)
 
 ### ⚙️ Application
