@@ -4,7 +4,7 @@
             <mat-panel-title> {{ 'statistic.header' | translate}} </mat-panel-title>
         </mat-expansion-panel-header>
         <div class="stats-table">
-            @for(statistic of statistics(); track statistic.barCode) {
+            @for(statistic of statistics(); track statistic.productName) {
                 <div class="stat">
                     <h3>{{ statistic.productName }}</h3>
                     <p>{{ statistic.productCount }}</p>
