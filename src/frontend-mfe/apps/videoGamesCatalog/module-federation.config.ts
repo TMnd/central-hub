@@ -1,9 +1,9 @@
 import { ModuleFederationConfig } from '@nx/module-federation';
 
 const config: ModuleFederationConfig = {
-  name: 'video_games_catalog',
+  name: 'videoGamesCatalog',
   exposes: {
-    './Routes': 'apps/video_games_catalog/src/app/remote-entry/entry.routes.ts',
+    './Routes': 'apps/videoGamesCatalog/src/app/remote-entry/entry.routes.ts',
   },
 };
 

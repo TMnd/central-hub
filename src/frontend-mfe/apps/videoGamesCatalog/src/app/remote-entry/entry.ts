@@ -4,7 +4,7 @@ import { NxWelcome } from './nx-welcome';
 
 @Component({
   imports: [CommonModule, NxWelcome],
-  selector: 'ng-mf-video_games_catalog-entry',
+  selector: 'ng-mf-videoGamesCatalog-entry',
   template: `<ng-mf-nx-welcome></ng-mf-nx-welcome>`,
 })
 export class RemoteEntry {}

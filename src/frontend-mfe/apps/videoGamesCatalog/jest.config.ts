@@ -1,8 +1,8 @@
 export default {
-  displayName: 'video_games_catalog',
+  displayName: 'videoGamesCatalog',
   preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-  coverageDirectory: '../../coverage/apps/video_games_catalog',
+  coverageDirectory: '../../coverage/apps/videoGamesCatalog',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',

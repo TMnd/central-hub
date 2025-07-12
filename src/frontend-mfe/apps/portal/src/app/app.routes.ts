@@ -3,9 +3,9 @@ import { Route } from '@angular/router';
 
 export const appRoutes: Route[] = [
   {
-    path: 'video_games_catalog',
+    path: 'videoGamesCatalog',
     loadChildren: () =>
-      import('video_games_catalog/Routes').then((m) => m!.remoteRoutes),
+      import('videoGamesCatalog/Routes').then((m) => m!.remoteRoutes),
   },
   {
     path: 'products',

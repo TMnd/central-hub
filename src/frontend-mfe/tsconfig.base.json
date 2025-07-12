@@ -8,7 +8,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
-    "target": "es2015",
+    "target": "es2022",
     "module": "esnext",
     "lib": ["es2020", "dom"],
     "skipLibCheck": true,
@@ -16,8 +16,8 @@
     "baseUrl": ".",
     "paths": {
       "products/Routes": ["apps/products/src/app/remote-entry/entry.routes.ts"],
-      "video_games_catalog/Routes": [
-        "apps/video_games_catalog/src/app/remote-entry/entry.routes.ts"
+      "videoGamesCatalog/Routes": [
+        "apps/videoGamesCatalog/src/app/remote-entry/entry.routes.ts"
       ]
     }
   },
