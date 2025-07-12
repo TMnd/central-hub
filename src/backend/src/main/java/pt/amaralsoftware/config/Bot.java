@@ -31,7 +31,7 @@ public class Bot extends ListenerAdapter {
     @ConfigProperty(name = "discord.bot.user.id")
     String userId;
 
-    void onStart(@Observes StartupEvent ev) throws Exception {
+    /* void onStart(@Observes StartupEvent ev) throws Exception {
         log.info("Starting Bot...");
 
         jda = JDABuilder.createDefault(token)
@@ -39,7 +39,7 @@ public class Bot extends ListenerAdapter {
                 .build();
 
         log.info("Bot started successfully");
-    }
+    }*/
 
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {

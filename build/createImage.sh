@@ -1,13 +1,13 @@
 #!/bin/bash
 set -x
 
-VERSION=1.1.0
+VERSION=2.0.0
 APPLICATION_NAME=storaged-products
 PUSH=false
 
 MODULES=();
 MODULES+=("../src/backend/Dockerfile-backend");
-MODULES+=("../src/frontend/Dockerfile-frontend");
+#MODULES+=("../src/frontend/Dockerfile-frontend");
 
 #print_usage
 print_usage() {
