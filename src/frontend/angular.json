@@ -45,7 +45,7 @@
           "configurations": {
             "production": {
               "sourceMap": true,
-              "baseHref": "/products/",
+              "baseHref"/",
               "deployUrl": "/products/",
               "budgets": [
                 {
