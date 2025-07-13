@@ -2,7 +2,7 @@
   "name": "portal",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "prefix": "ng-mf",
+  "prefix": "app",
   "sourceRoot": "apps/portal/src",
   "tags": [],
   "targets": {
@@ -22,7 +22,15 @@
             "input": "apps/portal/public"
           }
         ],
-        "styles": ["apps/portal/src/styles.scss"],
+        "styles": [
+            "apps/portal/src/styles.scss",
+            "@angular/material/prebuilt-themes/azure-blue.css",
+            "node_modules/bootstrap/dist/css/bootstrap.min.css",
+            "node_modules/ngx-toastr/toastr.css"
+        ],
+        "scripts": [
+            "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+        ],
         "customWebpackConfig": {
           "path": "apps/portal/webpack.config.ts"
         }
@@ -99,5 +107,6 @@
         "spa": true
       }
     }
-  }
+  },
+  "implicitDependencies": ["shelveProducts","videoGameCatalog"]
 }

@@ -1,15 +1,19 @@
 import {
-  ApplicationConfig,
-  provideBrowserGlobalErrorListeners,
-  provideZoneChangeDetection,
+    ApplicationConfig,
+    provideZoneChangeDetection,
 } from '@angular/core';
-import { provideRouter } from '@angular/router';
-import { appRoutes } from './app.routes';
+import {provideRouter} from '@angular/router';
+import {appRoutes} from './app.routes';
+import {provideHttpClient, withInterceptorsFromDi} from "@angular/common/http";
+import {provideToastr} from "ngx-toastr";
+import {provideAnimations} from '@angular/platform-browser/animations';
 
 export const appConfig: ApplicationConfig = {
-  providers: [
-    provideBrowserGlobalErrorListeners(),
-    provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(appRoutes),
-  ],
+    providers: [
+        provideZoneChangeDetection({eventCoalescing: true}),
+        provideRouter(appRoutes),
+        provideHttpClient(withInterceptorsFromDi()),
+        provideAnimations(),
+        provideToastr(),
+    ]
 };

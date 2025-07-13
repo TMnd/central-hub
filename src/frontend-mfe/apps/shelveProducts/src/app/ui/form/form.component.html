@@ -1,0 +1,68 @@
+<div class="col-md-12">
+    <form [formGroup]="myForm">
+        <mat-form-field appearance="fill">
+            <mat-label>{{ 'form.bar.code' | translate }}</mat-label>
+            <input matInput formControlName="barCode" type="text" />
+            <mat-error *ngIf="myForm.get('barCode')?.hasError('required')">{{ 'form.bar.code.error' | translate }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>{{ 'form.name' | translate }}</mat-label>
+            <input matInput formControlName="name" type="text" />
+            <mat-error *ngIf="myForm.get('name')?.hasError('required')">{{ 'form.name.error' | translate }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>{{ 'form.description' | translate }}</mat-label>
+            <input matInput formControlName="description" type="text" />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>{{ 'form.shelve.identifier' | translate }}</mat-label>
+            <input matInput formControlName="productId" type="text" />
+            <mat-error *ngIf="myForm.get('productId')?.hasError('required')">{{ 'form.shelve.identifier.error' | translate }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>{{ 'form.shelve.code' | translate }}</mat-label>
+            <input matInput formControlName="code" type="text" />
+            <mat-error *ngIf="myForm.get('code')?.hasError('required')">{{ 'form.shelve.code.error' | translate }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>{{ 'form.expiry.date' | translate }}</mat-label>
+            <input matInput [matDatepicker]="picker" [min]="today" formControlName="expiryDate" />
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="myForm.get('expiryDate')?.hasError('required')">{{ 'form.expiry.date.error' | translate }}</mat-error>
+        </mat-form-field>
+    </form>
+</div>
+<div class="col-md-12 actions">
+
+    @if(isEditMode()){
+        <button
+            mat-flat-button
+            (click)="updateProduct()"
+        >
+            <mat-icon>update</mat-icon>
+            Update
+        </button>
+    }
+    @else {
+        <button
+            mat-stroked-button
+            (click)="clearForm()"
+        >
+            <mat-icon>clear</mat-icon>
+            Clear
+        </button>
+        <button
+            mat-flat-button
+            (click)="submitForm()"
+        >
+            <mat-icon>save</mat-icon>
+            Save
+        </button>
+    }
+</div>

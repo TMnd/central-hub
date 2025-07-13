@@ -1,0 +1,75 @@
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #sidenav
+                 mode="side"
+                 [(opened)]="opened"
+                 (opened)="events.push('open!')"
+                 (closed)="events.push('close!')"
+                 position="end"
+                 class="right-sidenav"
+    >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 header">
+
+                    <h5>{{ 'form.title' | translate }}</h5>
+
+                    <button
+                        mat-icon-button
+                        (click)="sidenav.toggle()"
+                        [title]="'form.close' | translate"
+                    >
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </div>
+                <app-form-component></app-form-component>
+            </div>
+        </div>
+
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <div class="container-flex">
+            <div class="row">
+                <div class="col-md-12 p-2">
+                    <app-statistics-panel-component></app-statistics-panel-component>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 controls">
+                    <button
+                        mat-icon-button
+                        aria-label="Remove product(s)"
+                        (click)="removeProducts()"
+                        [disabled]="deletionDisable()"
+                        [title]="'remove.shelve.product' | translate"
+                    >
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                    <div>
+                        <button
+                            mat-icon-button
+                            aria-label="Add new product"
+                            (click)="refreshProducts()"
+                            [title]="'refresh.products' | translate"
+                        >
+                            <mat-icon>refresh</mat-icon>
+                        </button>
+                        <button
+                            mat-icon-button
+                            aria-label="Add new product"
+                            (click)="addProduct()"
+                            [title]="'add.shelve.product' | translate"
+                        >
+                            <mat-icon>add</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <app-table-component></app-table-component>
+                </div>
+            </div>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>

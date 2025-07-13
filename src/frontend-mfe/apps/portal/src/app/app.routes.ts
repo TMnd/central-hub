@@ -1,18 +1,19 @@
-import { NxWelcome } from './nx-welcome';
+import { PortalHomeComponent } from './portal-home.component';
 import { Route } from '@angular/router';
 
 export const appRoutes: Route[] = [
   {
-    path: 'videoGamesCatalog',
+    path: 'videoGameCatalog',
     loadChildren: () =>
-      import('videoGamesCatalog/Routes').then((m) => m!.remoteRoutes),
+      import('videoGameCatalog/Routes').then((m) => m!.remoteRoutes),
   },
   {
-    path: 'products',
-    loadChildren: () => import('products/Routes').then((m) => m!.remoteRoutes),
+    path: 'shelveProducts',
+    loadChildren: () =>
+      import('shelveProducts/Routes').then((m) => m!.remoteRoutes),
   },
   {
     path: '',
-    component: NxWelcome,
+    component: PortalHomeComponent,
   },
 ];

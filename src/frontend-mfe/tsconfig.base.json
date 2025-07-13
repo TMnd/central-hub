@@ -15,7 +15,16 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "product/Routes": ["apps/product/src/app/remote-entry/entry.routes.ts"],
       "products/Routes": ["apps/products/src/app/remote-entry/entry.routes.ts"],
+      "remote1/Routes": ["apps/remote1/src/app/remote-entry/entry.routes.ts"],
+      "remote2/Routes": ["apps/remote2/src/app/remote-entry/entry.routes.ts"],
+      "shelveProducts/Routes": [
+        "apps/shelveProducts/src/app/remote-entry/entry.routes.ts"
+      ],
+      "videoGameCatalog/Routes": [
+        "apps/videoGameCatalog/src/app/remote-entry/entry.routes.ts"
+      ],
       "videoGamesCatalog/Routes": [
         "apps/videoGamesCatalog/src/app/remote-entry/entry.routes.ts"
       ]
