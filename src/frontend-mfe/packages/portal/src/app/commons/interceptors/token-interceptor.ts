@@ -7,7 +7,7 @@ export function tokenInterceptor(req: HttpRequest<unknown>, next: HttpHandlerFn)
 
     const authReq = req.clone({
       setHeaders: {
-        Authorization: `Bearer ${applicationConfigurations.basicAuthenticationToken()}`
+        Authorization: `Basic ${applicationConfigurations.basicAuthenticationToken()}`
       }
     });
 

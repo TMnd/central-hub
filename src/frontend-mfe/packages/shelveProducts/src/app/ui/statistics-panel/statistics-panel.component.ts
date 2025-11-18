@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@a
 import { CommonModule } from '@angular/common';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { StatisticsPanelService } from './statistics-panel.service';
-import { InternalizationPipe } from '@portal/library';
+import { InternalizationPipe, KeyValueComponent } from '@portal/library';
 
 @Component({
     selector: 'app-statistics-panel-component',
@@ -13,7 +13,8 @@ import { InternalizationPipe } from '@portal/library';
     imports: [
         CommonModule,
         MatExpansionModule,
-        InternalizationPipe
+        InternalizationPipe,
+        KeyValueComponent
     ],
     providers: []
 })

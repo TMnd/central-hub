@@ -17,7 +17,9 @@ import {ToastrService} from "ngx-toastr";
 import {MatDialog} from "@angular/material/dialog";
 import {Subscription} from "rxjs";
 import {ConfirmationModalComponent} from "../ui/confirmation-modal/confirmation-modal.component";
-import { I18nService, InternalizationPipe, MF_FRONTEND } from '@portal/library';
+import { I18nService, InternalizationPipe, KeyValueComponent, MF_FRONTEND } from '@portal/library';
+import { SelectionModel } from '@angular/cdk/collections';
+import { ShelveProduct } from '../interface/shelve-product.interface';
 
 @Component({
     selector: 'shelve-products-root',
@@ -33,7 +35,8 @@ import { I18nService, InternalizationPipe, MF_FRONTEND } from '@portal/library';
         MatSidenavContainer,
         MatSidenavContent,
         StatisticsPanelComponent,
-        TableComponent
+        TableComponent,
+        KeyValueComponent
     ],
     standalone: true,
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -71,8 +74,6 @@ export class ShelveProductsComponent  implements OnDestroy {
     constructor() {
 
         console.log("--- ShelveProductsComponent initialized ---");
-        console.log(this.I18nService.translate(this.mf, "batatas"));
-        console.log(this.I18nService.translate(this.mf, "table.column.name"));
 
         // TODO colocar no resolver
         /*console.log("Initializing application...");
@@ -138,6 +139,7 @@ export class ShelveProductsComponent  implements OnDestroy {
                             this.toastr.success(`Product "${product.code}" was removed.`, '', {
                                 positionClass: 'toast-bottom-left'
                             });
+                            this.tableService.selection.set(new SelectionModel<ShelveProduct>(true, []));
                         }
                     )
                 }
@@ -152,4 +154,8 @@ export class ShelveProductsComponent  implements OnDestroy {
         this.subChanged.unsubscribe();
     }
 
+    closeNav() {
+        this.sidenav.toggle()
+        this.sideNavService.productSelected.set({code: '', date: '', barCode: '', expiryDate: '', name: '', productId: '', description: ''});
+    }
 }

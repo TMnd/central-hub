@@ -56,7 +56,29 @@
     .products-row {
         &:hover {
             background-color: var(--mat-sys-primary-fixed-dim);
+            color: var(--color-highlight);
         }
+
+        &:nth-child(even) {
+            background-color: #f5f5f5;
+        }
+
+        &:nth-child(odd) {
+            background-color: #ffffff;
+        }
+
+        &:nth-child(even):hover {
+            background-color: var(--mat-sys-primary-fixed-dim);
+        }
+
+        &:nth-child(odd):hover {
+            background-color: var(--mat-sys-primary-fixed-dim);
+        }
+    }
+
+    .active {
+        background-color: var(--color-secondary) !important;
+        color: var(--color-highlight) !important;
     }
 
     @media (max-width: 780px) {

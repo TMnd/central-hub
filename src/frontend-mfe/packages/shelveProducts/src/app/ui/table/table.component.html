@@ -26,42 +26,42 @@
             </ng-container>
 
             <ng-container matColumnDef="Name">
-                <th mat-header-cell *matHeaderCellDef> {{ "table.column.name" | translate }} </th>
+                <th mat-header-cell *matHeaderCellDef> <b>{{ "table.column.name" | translate }}</b> </th>
                 <td mat-cell *matCellDef="let element"> {{element.name}} </td>
             </ng-container>
 
             <ng-container matColumnDef="ProductId">
-                <th mat-header-cell *matHeaderCellDef> {{ "table.column.product.id" | translate }} </th>
+                <th mat-header-cell *matHeaderCellDef> <b>{{ "table.column.product.id" | translate }}</b> </th>
                 <td mat-cell *matCellDef="let element"> {{element.productId}} </td>
             </ng-container>
 
             <ng-container matColumnDef="BarCode">
-                <th mat-header-cell *matHeaderCellDef> {{ "table.column.bar.code" | translate }} </th>
+                <th mat-header-cell *matHeaderCellDef> <b>{{ "table.column.bar.code" | translate }}</b> </th>
                 <td mat-cell *matCellDef="let element"> {{element.barCode}} </td>
             </ng-container>
 
             <ng-container matColumnDef="Code">
-                <th mat-header-cell *matHeaderCellDef> {{ "table.column.code" | translate }} </th>
+                <th mat-header-cell *matHeaderCellDef> <b>{{ "table.column.code" | translate }}</b> </th>
                 <td mat-cell *matCellDef="let element"> {{element.code}} </td>
             </ng-container>
 
             <ng-container matColumnDef="Description">
-                <th mat-header-cell *matHeaderCellDef> {{ "table.column.description" | translate }} </th>
+                <th mat-header-cell *matHeaderCellDef> <b>{{ "table.column.description" | translate }}</b> </th>
                 <td mat-cell *matCellDef="let element"> {{element.description}} </td>
             </ng-container>
 
             <ng-container matColumnDef="InsertDate">
-                <th mat-header-cell *matHeaderCellDef> {{ "table.column.insert.date" | translate }} </th>
+                <th mat-header-cell *matHeaderCellDef> <b>{{ "table.column.insert.date" | translate }}</b> </th>
                 <td mat-cell *matCellDef="let element"> {{element.date}} </td>
             </ng-container>
 
             <ng-container matColumnDef="ExpiryDate">
-                <th mat-header-cell *matHeaderCellDef> {{ "table.column.expiry.date" | translate }} </th>
+                <th mat-header-cell *matHeaderCellDef> <b>{{ "table.column.expiry.date" | translate }}</b> </th>
                 <td mat-cell *matCellDef="let element"> {{element.expiryDate}} </td>
             </ng-container>
 
             <ng-container matColumnDef="daysLeft">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header="ExpiryDate"> {{ "table.column.days.left" | translate }} </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header="ExpiryDate"> <b>{{ "table.column.days.left" | translate }}</b> </th>
                 <td
                     mat-cell
                     *matCellDef="let element"
@@ -70,7 +70,8 @@
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr class="products-row" mat-row *matRowDef="let row; columns: displayedColumns;" (click)="editProduct(row)"></tr>
+            <tr class="products-row" mat-row *matRowDef="let row; columns: displayedColumns;" (click)="editProduct(row)"
+                [class.active]="isActiveRow(row)"></tr>
 
             <tr mat-row *matNoDataRow>
                 <td class="mat-cell" [attr.colspan]="displayedColumns.length">

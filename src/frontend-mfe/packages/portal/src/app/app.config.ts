@@ -16,6 +16,7 @@ import config from '../../module-federation.config';
 import { AppInitService, ApplicationConfigurations } from '@portal/library';
 import { tokenInterceptor } from './commons/interceptors/token-interceptor';
 import { httpErrorInterceptor } from './commons/interceptors/httperror-interceptor';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -26,6 +27,7 @@ export const appConfig: ApplicationConfig = {
       withInterceptorsFromDi(),
       withInterceptors([tokenInterceptor, httpErrorInterceptor])
     ),
+    provideAnimations(),
     provideToastr({
       timeOut: 3000,
       positionClass: 'toast-top-right',

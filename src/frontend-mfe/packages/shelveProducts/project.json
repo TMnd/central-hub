@@ -68,24 +68,21 @@
     },
     "serve": {
       "continuous": true,
-      "executor": "@nx/angular:dev-server",
+      "executor": "@nx/angular:module-federation-dev-server",
       "options": {
         "port": 4201,
         "publicHost": "http://localhost:4201",
-        "proxyConfig": "packages/shelveProducts/proxy.conf.js"
+        "proxyConfig": "packages/shelveProducts/proxy-local.config.js"
       },
       "configurations": {
         "production": {
-          "buildTarget": "shelveProducts:build:production",
-          "proxyConfig": "packages/shelveProducts/proxy.conf.js"
+          "buildTarget": "shelveProducts:build:production"
         },
         "development": {
-          "buildTarget": "shelveProducts:build:development",
-          "proxyConfig": "packages/shelveProducts/proxy.conf.js"
+          "buildTarget": "shelveProducts:build:development"
         }
       },
-      "defaultConfiguration": "development",
-      "dependsOn": ["portal:serve"]
+      "defaultConfiguration": "development"
     },
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",

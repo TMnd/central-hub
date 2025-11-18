@@ -15,7 +15,7 @@
 
                     <button
                         mat-icon-button
-                        (click)="sidenav.toggle()"
+                        (click)="closeNav()"
                         [title]="'form.close' | translate"
                     >
                         <mat-icon>close</mat-icon>
@@ -30,14 +30,12 @@
     <mat-sidenav-content>
         <div class="container-flex">
             <div class="row">
-                <div class="col-md-12 p-2">
-                    <app-statistics-panel-component></app-statistics-panel-component>
-                </div>
+                <app-statistics-panel-component></app-statistics-panel-component>
             </div>
             <div class="row">
                 <div class="col-md-12 controls">
                     <button
-                        mat-icon-button
+                        matIconButton
                         aria-label="Remove product(s)"
                         (click)="removeProducts()"
                         [disabled]="deletionDisable()"

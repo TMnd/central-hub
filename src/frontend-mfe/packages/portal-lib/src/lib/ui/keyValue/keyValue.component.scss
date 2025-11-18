@@ -1,0 +1,23 @@
+.migration_service_pair{
+    padding: 0;
+}
+
+.migration_service_label, .migration_service_value {
+    padding: 6px 8px;
+    font-weight: 400;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-height: 35px;
+    width: 200px;
+}
+
+.migration_service_label {
+    font-weight: 700;
+}
+
+.migration_service_value {
+    background: var(--color-light-neutral);
+    border-radius: 6px;
+    border: 1px solid var(--color-neutral-border-color);
+}

@@ -10,9 +10,10 @@ export interface ShelveProduct {
 
 export interface ShelveProductTable extends ShelveProduct {
     daysLeft: number
+    isSelected?: boolean
 }
 
 export interface ShelveProductCount {
     productName: string
-    productCount: number
+    productCount: string
 }

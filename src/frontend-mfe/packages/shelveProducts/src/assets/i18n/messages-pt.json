@@ -27,5 +27,6 @@
     "remove.multi.product": "Tem a certeza para remover os produtos %s?",
     "remove.shelve.product": "Remover productos",
     "add.shelve.product": "Adicionar productos",
-    "statistic.header": "Contadores Produtos"
+    "statistic.header": "Contadores Produtos",
+    "refresh.products": "Atualizar lista"
 }

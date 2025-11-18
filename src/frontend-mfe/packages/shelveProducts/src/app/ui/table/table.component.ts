@@ -166,4 +166,8 @@ export class TableComponent {
 
         this.tableService.dataSource.set(sortedData);
     }
+
+    isActiveRow(row: ShelveProduct) {
+        return this.sideNavService.productSelected() === row
+    }
 }

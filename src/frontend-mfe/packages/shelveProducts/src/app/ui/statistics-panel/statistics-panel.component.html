@@ -3,14 +3,16 @@
         <mat-expansion-panel-header>
             <mat-panel-title> {{ 'statistic.header' | translate}} </mat-panel-title>
         </mat-expansion-panel-header>
-        <div class="stats-table">
-            @for(statistic of statistics(); track statistic.productName) {
-                <div class="stat">
-                    <h3>{{ statistic.productName }}</h3>
-                    <span>{{ statistic.productCount }}</span>
-                </div>
-            }
-        </div>
+        <ng-template matExpansionPanelContent>
+            <div class="body">
+                @for(statistic of statistics(); track statistic.productName) {
+                    <lib-key-value
+                        [key]="statistic.productName"
+                        [value]="statistic.productCount"
+                    ></lib-key-value>
+                }
+            </div>
+        </ng-template>
     </mat-expansion-panel>
 </mat-accordion>
 

@@ -4,7 +4,7 @@ import { I18nService } from '@portal/library';
 
 @Component({
   imports: [RouterModule],
-  selector: 'ng-mf-nav-bar',
+  selector: 'portal-nav-bar',
   templateUrl: './nav.component.html',
   styleUrl: './nav.component.scss',
 })

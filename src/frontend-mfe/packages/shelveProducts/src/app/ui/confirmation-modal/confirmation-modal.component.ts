@@ -10,7 +10,7 @@ import {
 } from '@angular/material/dialog';
 import { MatButton } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
-import { InternalizationPipe } from '@portal/library';
+import { InternalizationPipe, MF_FRONTEND } from '@portal/library';
 
 export interface DialogData {
     title: string;
@@ -32,7 +32,9 @@ export interface DialogData {
         MatDialogClose,
         InternalizationPipe
     ],
-    providers: []
+    providers: [
+        { provide: MF_FRONTEND, useValue: 'shelveProducts' }
+    ]
 })
 export class ConfirmationModalComponent {
     readonly dialogRef = inject(MatDialogRef<ConfirmationModalComponent>);
