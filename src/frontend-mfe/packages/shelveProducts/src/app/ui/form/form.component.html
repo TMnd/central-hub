@@ -3,13 +3,17 @@
         <mat-form-field appearance="fill">
             <mat-label>{{ 'form.bar.code' | translate }}</mat-label>
             <input matInput formControlName="barCode" type="text" />
-            <mat-error *ngIf="myForm.get('barCode')?.hasError('required')">{{ 'form.bar.code.error' | translate }}</mat-error>
+            @if(myForm.get('barCode')?.hasError('required')) {
+                <mat-error>{{ 'form.bar.code.error' | translate }}</mat-error>
+            }
         </mat-form-field>
 
         <mat-form-field appearance="fill">
             <mat-label>{{ 'form.name' | translate }}</mat-label>
             <input matInput formControlName="name" type="text" />
-            <mat-error *ngIf="myForm.get('name')?.hasError('required')">{{ 'form.name.error' | translate }}</mat-error>
+            @if(myForm.get('name')?.hasError('required')) {
+                <mat-error>{{ 'form.name.error' | translate }}</mat-error>
+            }
         </mat-form-field>
 
         <mat-form-field appearance="fill">
@@ -20,13 +24,17 @@
         <mat-form-field appearance="fill">
             <mat-label>{{ 'form.shelve.identifier' | translate }}</mat-label>
             <input matInput formControlName="productId" type="text" />
-            <mat-error *ngIf="myForm.get('productId')?.hasError('required')">{{ 'form.shelve.identifier.error' | translate }}</mat-error>
+            @if(myForm.get('productId')?.hasError('required')) {
+                <mat-error>{{ 'form.shelve.identifier.error' | translate }}</mat-error>
+            }
         </mat-form-field>
 
         <mat-form-field appearance="fill">
             <mat-label>{{ 'form.shelve.code' | translate }}</mat-label>
             <input matInput formControlName="code" type="text" />
-            <mat-error *ngIf="myForm.get('code')?.hasError('required')">{{ 'form.shelve.code.error' | translate }}</mat-error>
+            @if(myForm.get('code')?.hasError('required')) {
+                <mat-error>{{ 'form.shelve.code.error' | translate }}</mat-error>
+            }
         </mat-form-field>
 
         <mat-form-field appearance="fill">
@@ -34,7 +42,9 @@
             <input matInput [matDatepicker]="picker" [min]="today" formControlName="expiryDate" />
             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
-            <mat-error *ngIf="myForm.get('expiryDate')?.hasError('required')">{{ 'form.expiry.date.error' | translate }}</mat-error>
+            @if(myForm.get('expiryDate')?.hasError('required')) {
+                <mat-error>{{ 'form.expiry.date.error' | translate }}</mat-error>
+            }
         </mat-form-field>
     </form>
 </div>
