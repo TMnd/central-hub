@@ -3,7 +3,7 @@ import { MatFormField, MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule, DatePipe } from '@angular/common';
-import { MatButton } from '@angular/material/button';
+import { MatButton, MatFabButton } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDatepicker, MatDatepickerInput, MatDatepickerToggle } from '@angular/material/datepicker';
 import { provideNativeDateAdapter } from '@angular/material/core';
@@ -32,7 +32,8 @@ import { InternalizationPipe } from '@portal/library';
         MatDatepickerInput,
         MatDatepickerToggle,
         MatDatepicker,
-        InternalizationPipe
+        InternalizationPipe,
+        MatFabButton
     ],
     providers: [
         ShelveProductService,

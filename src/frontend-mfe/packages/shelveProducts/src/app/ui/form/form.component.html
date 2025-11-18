@@ -1,3 +1,31 @@
+<div class="col-md-12 actions">
+
+    @if(isEditMode()){
+        <button
+            mat-flat-button
+            (click)="updateProduct()"
+        >
+            <mat-icon>update</mat-icon>
+            Update
+        </button>
+    }
+    @else {
+        <button
+            mat-stroked-button
+            (click)="clearForm()"
+        >
+            <mat-icon>clear</mat-icon>
+            Clear
+        </button>
+        <button
+            mat-flat-button
+            (click)="submitForm()"
+        >
+            <mat-icon>save</mat-icon>
+            Save
+        </button>
+    }
+</div>
 <div class="col-md-12">
     <form [formGroup]="myForm">
         <mat-form-field appearance="fill">
@@ -47,32 +75,4 @@
             }
         </mat-form-field>
     </form>
-</div>
-<div class="col-md-12 actions">
-
-    @if(isEditMode()){
-        <button
-            mat-flat-button
-            (click)="updateProduct()"
-        >
-            <mat-icon>update</mat-icon>
-            Update
-        </button>
-    }
-    @else {
-        <button
-            mat-stroked-button
-            (click)="clearForm()"
-        >
-            <mat-icon>clear</mat-icon>
-            Clear
-        </button>
-        <button
-            mat-flat-button
-            (click)="submitForm()"
-        >
-            <mat-icon>save</mat-icon>
-            Save
-        </button>
-    }
 </div>

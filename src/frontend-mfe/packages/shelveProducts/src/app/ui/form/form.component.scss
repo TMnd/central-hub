@@ -15,7 +15,9 @@
     }
 
     .actions {
-        justify-content: space-between;
+        justify-content: flex-end;
         display: flex;
+        padding-bottom: 15px;
+        gap: 5px;
     }
 }

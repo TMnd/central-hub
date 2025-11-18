@@ -20,6 +20,7 @@ body { margin: 0; font-family: 'Inter', sans-serif; }
     --font-family: 'Inter', sans-serif;
 
     --mat-sys-title-medium-font: var(--font-family);
+    --mat-sys-label-large-font: var(--font-family);
     --mat-button-filled-label-text-font: var(--font-family);
     --mat-form-field-filled-label-text-font: var(--font-family);
 
@@ -39,6 +40,8 @@ body { margin: 0; font-family: 'Inter', sans-serif; }
     // Button Component
     --mat-icon-button-state-layer-size: 36px;
     --mat-icon-button-icon-size: 22px;
+    --mat-button-filled-container-shape: 8px;
+    --mat-button-outlined-container-shape: 8px;
     .mat-mdc-icon-button:hover .mat-mdc-button-persistent-ripple::before {
         background-color: var(--color-accent);
     }
