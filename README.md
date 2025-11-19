@@ -8,6 +8,9 @@ So here we go — time to build things my way! 🛠️💥🛠️
 # 📦 Patch Notes
 ## v2.0.0 (2025-11-219)
 
+### ⚙️ Application
+- Changed project name to "Central Hub" to better reflect its purpose as a personal application hub.
+
 ### 🧩 Angular Frontend
 - Transition the project to NX to take advantage of **Module Federation** for future use cases.
 - Implemented a new UI theme.
@@ -26,7 +29,6 @@ So here we go — time to build things my way! 🛠️💥🛠️
 ## v1.0.0 (2025-05-17)
 
 ### ⚙️ Application
-
 - Deployment available via Docker Compose.
 
 ### 🧩 Angular Frontend

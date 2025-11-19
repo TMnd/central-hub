@@ -2,12 +2,12 @@
 set -x
 
 VERSION=2.0.0
-APPLICATION_NAME=storaged-products
+APPLICATION_NAME=central-hub
 PUSH=false
 
 MODULES=();
 MODULES+=("../src/backend/Dockerfile-backend");
-#MODULES+=("../src/frontend/Dockerfile-frontend");
+MODULES+=("../src/frontend/Dockerfile-frontend");
 
 #print_usage
 print_usage() {
@@ -49,8 +49,8 @@ create_image() {
     fi
 
     if [ $PUSH = "true" ]; then
-      docker tag ${APPLICATION_NAME}-${MODULE}:${VERSION} 10.10.0.222:5000/${APPLICATION_NAME}-${MODULE}:${VERSION}
-      docker push 10.10.0.222:5000/${APPLICATION_NAME}-${MODULE}:${VERSION}
+      docker tag ${APPLICATION_NAME}-${MODULE}:${VERSION} 192.168.1.222:5000/${APPLICATION_NAME}-${MODULE}:${VERSION}
+      docker push 192.168.1.222:5000/${APPLICATION_NAME}-${MODULE}:${VERSION}
     fi
 
     docker image prune -f

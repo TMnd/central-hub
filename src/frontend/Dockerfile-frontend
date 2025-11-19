@@ -1,0 +1,27 @@
+FROM node:22-alpine AS builder
+
+WORKDIR /app
+
+COPY --chown=185:0 . .
+
+RUN yarn install \
+ && yarn run build
+
+FROM nginxinc/nginx-unprivileged:1.29.1-alpine as runner
+
+USER root
+
+RUN mkdir -p /opt/amaral-sofware/bin/ \
+ && mkdir -p /opt/amaral-sofware/scripts/
+
+RUN ls /opt/amaral-sofware/
+
+USER 185
+
+COPY --from=builder --chown=185 /app/buildfiles/conf/ /opt/bitnami/nginx/conf/server_blocks/
+COPY --from=builder --chown=185 /app/buildfiles/scripts/ /opt/amaral-sofware/scripts/
+COPY --from=builder --chown=185 /app/dist/shelve-product/browser /app/products/
+
+CMD ["/opt/amaral-sofware/scripts/run.sh"]
+
+EXPOSE 8080
