@@ -10,7 +10,7 @@ import { NavComponent } from './features/nav.component';
   styleUrl: './portal.component.scss',
 })
 export class PortalComponent {
-  protected title = 'portal';
+  protected title = 'CentralHub';
 
   private readonly i18n = inject(I18nService);
 
