@@ -869,7 +869,6 @@ export class NxWelcome {
   private readonly mf = inject(MF_FRONTEND);
 
   constructor() {
-
      console.log(this.i18nService.translate(this.mf, "welcome_message"));
   }
 

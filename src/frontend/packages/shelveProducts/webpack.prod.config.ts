@@ -23,22 +23,3 @@ export default withModuleFederation(
   { dts: false }
 );
 
-
-/* module.exports = withModuleFederationPlugin({
-
-    output: {
-        uniqueName: "shelveProducts",
-        publicPath: "auto"
-    },
-
-    shared: {
-        ...shareAll({ singleton: true, strictVersion: true, requiredVersion: 'auto' }),
-        'ngx-toastr': { singleton: true, strictVersion: true, requiredVersion: 'auto' },
-        './src/app/data-source/services/i18n.service.ts': {
-            singleton: true,
-        }
-    },
-
-    sharedMappings: ['ngx-toastr'],
-
-}); */

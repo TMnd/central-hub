@@ -1,6 +1,5 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { I18nService } from '@portal/library';
 import { NavComponent } from './features/nav.component';
 
 @Component({
@@ -12,9 +11,6 @@ import { NavComponent } from './features/nav.component';
 export class PortalComponent {
   protected title = 'CentralHub';
 
-  private readonly i18n = inject(I18nService);
-
   constructor() {
-    console.log(this.i18n.translate('portal', 'hello-world'));
   }
 }

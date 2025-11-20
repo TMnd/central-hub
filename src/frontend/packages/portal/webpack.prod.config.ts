@@ -19,6 +19,11 @@ export default withModuleFederation(
      *   ['app2', 'https://app2.example.com'],
      * ]
      */
+    remotes: [
+        ["mf1", "/mf1/remoteEntry.js"],
+        ["mf2", "/mf2/remoteEntry.js"],
+        ["shelveProducts", "/shelveProducts/remoteEntry.js"],
+    ]
   },
   { dts: false }
 );

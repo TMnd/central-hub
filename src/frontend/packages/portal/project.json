@@ -106,6 +106,14 @@
         "buildTarget": "portal:build",
         "port": 4200,
         "spa": true
+      },
+      "configurations": {
+          "development": {
+              "buildTarget": "shelveProducts:build:development"
+          },
+          "production": {
+              "buildTarget": "shelveProducts:build:production"
+          }
       }
     }
   }
