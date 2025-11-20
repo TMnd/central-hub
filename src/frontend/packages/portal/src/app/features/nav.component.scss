@@ -1,0 +1,38 @@
+.navbar {
+  background-color: var(--color-primary-dark) !important;
+  border-bottom: 2px solid var(--color-primary);
+  --bs-navbar-padding-y: 0 !important;
+
+  img {
+    height: 40px !important;
+  }
+}
+
+.navbar-toggler {
+  color: var(--color-text) !important;
+}
+
+.navbar .navbar-brand {
+  color: var(--color-highlight) !important;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.navbar .nav-link {
+  color: var(--color-text) !important;
+  transition: color 0.2s ease;
+  padding: 0.79rem;
+}
+
+.navbar .nav-link.active {
+  color: var(--color-highlight) !important;
+  border-bottom: 2px solid var(--color-highlight);
+}
+
+.active-link{
+  background-color: var(--color-primary);
+}
+
+nav.hidden {
+    transform: translateY(-100%);
+}

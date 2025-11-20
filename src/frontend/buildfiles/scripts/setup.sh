@@ -8,7 +8,7 @@ if [ -z "BASIC_TOKEN" ]; then
 fi
 
 FILEPATHS=(
-    "/app/products/assets/shelve-products.config.json"
+    "/opt/amaral-sofware/portal/assets/bff.config.json"
 )
 
 # Loop through each file path and run the sed command

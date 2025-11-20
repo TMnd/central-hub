@@ -1,0 +1,115 @@
+{
+  "name": "mf1",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "ng-mf",
+  "sourceRoot": "packages/mf1/src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:webpack-browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/mf1",
+        "index": "packages/mf1/src/index.html",
+        "main": "packages/mf1/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "packages/mf1/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          "packages/mf1/src/assets",
+          {
+            "glob": "**/*",
+            "input": "packages/mf1/public"
+          }
+        ],
+        "styles": ["packages/mf1/src/styles.scss"],
+        "customWebpackConfig": {
+          "path": "packages/mf1/webpack.config.ts"
+        }
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "4kb",
+              "maximumError": "8kb"
+            }
+          ],
+          "outputHashing": "all",
+          "customWebpackConfig": {
+            "path": "packages/mf1/webpack.prod.config.ts"
+          }
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "continuous": true,
+      "executor": "@nx/angular:dev-server",
+      "options": {
+        "port": 4203,
+        "publicHost": "http://localhost:4203"
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "mf1:build:production"
+        },
+        "development": {
+          "buildTarget": "mf1:build:development"
+        }
+      },
+      "defaultConfiguration": "development",
+      "dependsOn": ["portal:serve"]
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "buildTarget": "mf1:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "packages/mf1/jest.config.ts",
+        "tsConfig": "packages/mf1/tsconfig.spec.json"
+      }
+    },
+    "serve-static": {
+      "continuous": true,
+      "executor": "@nx/web:file-server",
+      "defaultConfiguration": "production",
+      "options": {
+        "buildTarget": "mf1:build",
+        "port": 4203,
+        "watch": false
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "mf1:build:development"
+        },
+        "production": {
+          "buildTarget": "mf1:build:production"
+        }
+      }
+    }
+  }
+}

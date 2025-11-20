@@ -7,20 +7,21 @@ COPY --chown=185:0 . .
 RUN yarn install \
  && yarn run build
 
-FROM bitnami/nginx:1.27.0 as runner
+FROM nginxinc/nginx-unprivileged:1.29.1-alpine as runner
 
 USER root
+
+RUN apk update \
+ && apk add --no-cache curl unzip bash
 
 RUN mkdir -p /opt/amaral-sofware/bin/ \
  && mkdir -p /opt/amaral-sofware/scripts/
 
-RUN ls /opt/amaral-sofware/
-
 USER 185
 
-COPY --from=builder --chown=185 /app/buildfiles/conf/ /opt/bitnami/nginx/conf/server_blocks/
-COPY --from=builder --chown=185 /app/buildfiles/scripts/ /opt/amaral-sofware/scripts/
-COPY --from=builder --chown=185 /app/dist/shelve-product/browser /app/products/
+COPY --chmod=770 /buildfiles/conf/default.conf /etc/nginx/conf.d/default.conf
+COPY --from=builder --chown=185 --chmod=770 /app/buildfiles/scripts/ /opt/amaral-sofware/scripts/
+COPY --from=builder --chown=185 --chmod=770 /app/dist/packages /opt/amaral-sofware
 
 CMD ["/opt/amaral-sofware/scripts/run.sh"]
 
