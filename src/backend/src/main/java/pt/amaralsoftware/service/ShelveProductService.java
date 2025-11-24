@@ -79,7 +79,7 @@ public class ShelveProductService {
 
             return getShelveProductDTO(catShelveProductEntity, DATE_PATTERN, formattedExpirationDate);
         }
-        
+
         return null;
     }
 
