@@ -3,31 +3,34 @@ package pt.amaralsoftware.models.DTO;
 public class ShelveProductDTO {
     private String name;
     private String barCode;
-    private String productId;
-    private String code;
+    private String shelveCode;
     private String expiryDate;
     private String date;
-    private String description;
+    private Integer quantity;
+    private Integer calories;
+    private Integer weight;
 
     public ShelveProductDTO() {
     }
 
     public ShelveProductDTO(
             String name,
-            String productId,
             String barCode,
-            String code,
+            String shelveCode,
             String expiryDate,
             String date,
-            String description
+            Integer quantity,
+            Integer calories,
+            Integer weight
     ) {
         this.name = name;
         this.barCode = barCode;
-        this.productId = productId;
-        this.code = code;
+        this.shelveCode = shelveCode;
         this.expiryDate = expiryDate;
         this.date = date;
-        this.description = description;
+        this.quantity = quantity;
+        this.calories = calories;
+        this.weight = weight;
     }
 
     public String getName() {
@@ -46,20 +49,12 @@ public class ShelveProductDTO {
         this.barCode = barCode;
     }
 
-    public String getProductId() {
-        return productId;
+    public String getShelveCode() {
+        return shelveCode;
     }
 
-    public void setProductId(String productId) {
-        this.productId = productId;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
+    public void setShelveCode(String shelveCode) {
+        this.shelveCode = shelveCode;
     }
 
     public String getExpiryDate() {
@@ -78,11 +73,27 @@ public class ShelveProductDTO {
         this.date = date;
     }
 
-    public String getDescription() {
-        return description;
+    public Integer getQuantity() {
+        return quantity;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    public Integer getCalories() {
+        return calories;
+    }
+
+    public void setCalories(Integer calories) {
+        this.calories = calories;
+    }
+
+    public Integer getWeight() {
+        return weight;
+    }
+
+    public void setWeight(Integer weight) {
+        this.weight = weight;
     }
 }

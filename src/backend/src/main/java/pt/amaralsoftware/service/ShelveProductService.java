@@ -34,12 +34,13 @@ public class ShelveProductService {
 
         return new ShelveProductDTO(
                 shelvedProduct.getProductName(),
-                shelvedProduct.getProductCode(),
                 shelvedProduct.getBarCode(),
                 shelvedProduct.getShelveCode(),
                 formattedExpirationDate,
                 insertDateFormatted,
-                shelvedProduct.getDescription()
+                shelvedProduct.getQuantity(),
+                shelvedProduct.getCalories(),
+                shelvedProduct.getWeight()
         );
     }
 
@@ -57,12 +58,13 @@ public class ShelveProductService {
 
         CatShelveProductEntity catShelveProductEntity = new CatShelveProductEntity(
             shelveProductDTO.getName(),
-            shelveProductDTO.getProductId(),
             shelveProductDTO.getBarCode(),
-            shelveProductDTO.getCode(),
+            shelveProductDTO.getShelveCode(),
             expiryDate,
             date,
-            shelveProductDTO.getDescription()
+            shelveProductDTO.getQuantity(),
+            shelveProductDTO.getCalories(),
+            shelveProductDTO.getWeight()
         );
 
         this.shelveProductRepository.persist(catShelveProductEntity);
@@ -107,12 +109,8 @@ public class ShelveProductService {
                 catShelveProductEntity.setProductName(updatedShelveProductDTO.getName());
             }
 
-            if (updatedShelveProductDTO.getProductId() != null) {
-                catShelveProductEntity.setProductCode(updatedShelveProductDTO.getProductId());
-            }
-
-            if (updatedShelveProductDTO.getCode() != null) {
-                catShelveProductEntity.setShelveCode(updatedShelveProductDTO.getCode());
+            if (updatedShelveProductDTO.getShelveCode() != null) {
+                catShelveProductEntity.setShelveCode(updatedShelveProductDTO.getShelveCode());
             }
 
             String expiryDateString = updatedShelveProductDTO.getExpiryDate();

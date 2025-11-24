@@ -1,11 +1,12 @@
 export interface ShelveProduct {
     name: string,
-    productId: string
     barCode: string,
-    code: string,
+    shelveCode: string,
     expiryDate: string,
     date: string,
-    description: string
+    quantity: number,
+    calories: number,
+    weight: number
 }
 
 export interface ShelveProductTable extends ShelveProduct {

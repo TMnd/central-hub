@@ -11,6 +11,8 @@ import { MatSortModule, Sort } from '@angular/material/sort';
 import { MatInput } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { InternalizationPipe } from '@portal/library';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
     selector: 'app-table-component',
@@ -28,7 +30,9 @@ import { InternalizationPipe } from '@portal/library';
         MatSortModule,
         MatInput,
         MatProgressSpinner,
-        InternalizationPipe
+        InternalizationPipe,
+        MatTooltipModule,
+        MatIconModule
     ],
     providers: [
         ShelveProductService
@@ -40,7 +44,7 @@ export class TableComponent {
     private readonly tableService = inject(TableService);
     private readonly sideNavService = inject(SideNavService);
 
-    displayedColumns: string[] = ['select', 'Name', 'ProductId', 'BarCode', 'Code', 'InsertDate', 'ExpiryDate', 'daysLeft'];
+    displayedColumns: string[] = ['select', 'Name', 'BarCode', 'ShelveCode', 'Quantity', 'Calories', 'Weight', 'InsertDate', 'ExpiryDate', 'daysLeft'];
 
     @HostListener('window:resize', ['$event'])
     onResize(event: UIEvent) {
@@ -54,9 +58,9 @@ export class TableComponent {
     private setDisplayedColumn() {
         const width = window.innerWidth;
         if (width < 768) {
-            this.displayedColumns = ['select', 'Name', 'Code', 'daysLeft'];
+            this.displayedColumns = ['select', 'Name', 'ShelveCode', 'daysLeft'];
         } else {
-            this.displayedColumns = ['select', 'Name', 'ProductId', 'BarCode', 'Code', 'Description', 'InsertDate', 'ExpiryDate', 'daysLeft'];
+            this.displayedColumns = ['select', 'Name', 'BarCode', 'ShelveCode', 'Quantity', 'Calories', 'Weight', 'InsertDate', 'ExpiryDate', 'daysLeft'];
         }
     }
 
@@ -75,13 +79,14 @@ export class TableComponent {
 
             let shelveProductTable: ShelveProductTable =  {
                 name: shelveProduct.name,
-                productId: shelveProduct.productId,
                 barCode: shelveProduct.barCode,
-                code: shelveProduct.code,
+                shelveCode: shelveProduct.shelveCode,
                 expiryDate: shelveProduct.expiryDate,
                 date: shelveProduct.date,
                 daysLeft: this.calcForRemainingDays(expiryDate),
-                description: shelveProduct.description
+                quantity: shelveProduct.quantity,
+                calories: shelveProduct.calories,
+                weight: shelveProduct.weight
             }
 
             return shelveProductTable;
@@ -109,6 +114,9 @@ export class TableComponent {
 
         this.shelveProductService.getShelveProduct()
             .then(products => {
+
+                console.log(products);
+
                 this.tableService.dataSource.set(products);
             })
             .finally(() => {

@@ -16,31 +16,34 @@ public class CatShelveProductEntity extends PanacheEntityBase implements Seriali
     public Long id;
     private String productName;
     private String barCode;
-    private String productCode;
     private String shelveCode;
     private ZonedDateTime expirationDate;
     private Date insertDate;
-    private String description;
+    private Integer quantity;
+    private Integer calories;
+    private Integer weight;
 
     public CatShelveProductEntity() {
     }
 
     public CatShelveProductEntity(
             String productName,
-            String productCode,
             String barCode,
             String shelveCode,
             ZonedDateTime expirationDate,
             Date insertDate,
-            String description
+            Integer quantity,
+            Integer calories,
+            Integer weight
     ) {
         this.productName = productName;
         this.barCode = barCode;
-        this.productCode = productCode;
         this.shelveCode = shelveCode;
         this.expirationDate = expirationDate;
         this.insertDate = insertDate;
-        this.description = description;
+        this.quantity = quantity;
+        this.calories = calories;
+        this.weight = weight;
     }
 
     public Long getId() {
@@ -67,14 +70,6 @@ public class CatShelveProductEntity extends PanacheEntityBase implements Seriali
         this.barCode = barCode;
     }
 
-    public String getProductCode() {
-        return productCode;
-    }
-
-    public void setProductCode(String productCode) {
-        this.productCode = productCode;
-    }
-
     public String getShelveCode() {
         return shelveCode;
     }
@@ -99,11 +94,27 @@ public class CatShelveProductEntity extends PanacheEntityBase implements Seriali
         this.insertDate = insertDate;
     }
 
-    public String getDescription() {
-        return description;
+    public Integer getQuantity() {
+        return quantity;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    public Integer getCalories() {
+        return calories;
+    }
+
+    public void setCalories(Integer calories) {
+        this.calories = calories;
+    }
+
+    public Integer getWeight() {
+        return weight;
+    }
+
+    public void setWeight(Integer weight) {
+        this.weight = weight;
     }
 }

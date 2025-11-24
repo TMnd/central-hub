@@ -3,7 +3,7 @@ import { MatFormField, MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule, DatePipe } from '@angular/common';
-import { MatButton, MatFabButton } from '@angular/material/button';
+import { MatButton } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDatepicker, MatDatepickerInput, MatDatepickerToggle } from '@angular/material/datepicker';
 import { provideNativeDateAdapter } from '@angular/material/core';
@@ -32,8 +32,7 @@ import { InternalizationPipe } from '@portal/library';
         MatDatepickerInput,
         MatDatepickerToggle,
         MatDatepicker,
-        InternalizationPipe,
-        MatFabButton
+        InternalizationPipe
     ],
     providers: [
         ShelveProductService,
@@ -63,20 +62,21 @@ export class FormComponent {
 
         effect(() => {
             if(this.isEditMode()){
-                this.myForm.controls["code"].disable();
+                this.myForm.controls["shelveCode"].disable();
             } else {
-                this.myForm.controls["code"].enable();
+                this.myForm.controls["shelveCode"].enable();
             }
         });
     }
 
     protected myForm = this.fb.group({
         name: ['', Validators.required],
-        productId: ['', Validators.required],
         barCode: ['', Validators.required],
-        code: ['', Validators.required],
+        shelveCode: ['', Validators.required],
         expiryDate: ['', Validators.required],
-        description: ['']
+        quantity: [1, Validators.min(1)],
+        weight: [0, Validators.min(0)],
+        calories: [0, Validators.min(0)]
     });
 
     protected submitForm() {
@@ -88,12 +88,13 @@ export class FormComponent {
 
             const payload: ShelveProduct = {
                 name: this.myForm.value.name ?? '',
-                productId: this.myForm.value.productId ?? '',
                 barCode: this.myForm.value.barCode ?? '',
-                code: this.myForm.value.code ?? '',
+                shelveCode: this.myForm.value.shelveCode ?? '',
                 expiryDate: this.datePipe.transform(this.myForm.value.expiryDate, 'yyyy-MM-dd') ?? '',
                 date: this.datePipe.transform(new Date(), 'yyyy-MM-dd') ?? '',
-                description: this.myForm.value.description ?? '',
+                weight: this.myForm.value.weight ?? 0,
+                quantity: this.myForm.value.quantity ?? 1,
+                calories: this.myForm.value.calories ?? 0,
             }
 
             this.shelveProductService.saveShelveProduct(payload)
@@ -105,7 +106,7 @@ export class FormComponent {
                     const updatedShelveProducts = [...shelveProducts, shelveProduct];
                     this.tableService.dataSource.set(updatedShelveProducts);
                     this.statisticsPanelService.getStatistics();
-                    this.toastr.success(`Product "${shelveProduct.code}" was added successfully.`, '', {
+                    this.toastr.success(`Product "${shelveProduct.shelveCode}" was added successfully.`, '', {
                         positionClass: 'toast-bottom-left'
                     });
                 })
@@ -122,32 +123,33 @@ export class FormComponent {
 
     protected clearForm() {
         this.sideNavService.isEditMode.set(false);
-        this.myForm.controls["code"].enable();
+        this.myForm.controls["shelveCode"].enable();
         this.myForm.reset();
     }
 
     protected updateProduct() {
-        const code = this.myForm.getRawValue().code;
+        const shelveCode = this.myForm.getRawValue().shelveCode;
 
         this.tableService.isLoadingResults.set(true);
 
         const payload: ShelveProduct = {
             name: this.myForm.value.name ?? '',
-            productId: this.myForm.value.productId ?? '',
             barCode: this.myForm.value.barCode ?? '',
-            code: code!,
+            shelveCode: shelveCode!,
             expiryDate: this.datePipe.transform(this.myForm.value.expiryDate, 'yyyy-MM-dd') ?? '',
             date: this.datePipe.transform(new Date(), 'yyyy-MM-dd') ?? '',
-            description: this.myForm.value.description ?? ''
+            calories: 0,
+            quantity: 1,
+            weight: 0
         }
 
-        this.shelveProductService.updateProduct(code!, payload)
+        this.shelveProductService.updateProduct(shelveCode!, payload)
             .then( () => {
                 this.tableService.dataSource.set(this.tableService.dataSource().map(product =>
-                    product.code === code ? { ...product, ...payload } : product
+                    product.shelveCode === shelveCode ? { ...product, ...payload } : product
                 ));
 
-                this.toastr.success(`Product "${code}" was updated successfully.`, '', {
+                this.toastr.success(`Product "${shelveCode}" was updated successfully.`, '', {
                     positionClass: 'toast-bottom-left'
                 });
             })

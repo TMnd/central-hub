@@ -20,7 +20,7 @@
     "form.shelve.identifier": "Product ID",
     "form.shelve.identifier.error" : "Product ID is necessary!",
     "form.shelve.code": "Code",
-    "form.shelve.code.error": "Code is necessary!",
+    "form.shelve.code.error": "Shelve code is necessary!",
     "form.expiry.date": "Choose expiry date",
     "form.expiry.date.error": "Expiry date is necessary!",
     "modal.title": "Remove produto(s)",

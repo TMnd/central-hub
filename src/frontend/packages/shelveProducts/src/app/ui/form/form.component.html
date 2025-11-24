@@ -28,13 +28,6 @@
 </div>
 <div class="col-md-12">
     <form [formGroup]="myForm">
-        <mat-form-field appearance="fill">
-            <mat-label>{{ 'form.bar.code' | translate }}</mat-label>
-            <input matInput formControlName="barCode" type="text" />
-            @if(myForm.get('barCode')?.hasError('required')) {
-                <mat-error>{{ 'form.bar.code.error' | translate }}</mat-error>
-            }
-        </mat-form-field>
 
         <mat-form-field appearance="fill">
             <mat-label>{{ 'form.name' | translate }}</mat-label>
@@ -45,24 +38,34 @@
         </mat-form-field>
 
         <mat-form-field appearance="fill">
-            <mat-label>{{ 'form.description' | translate }}</mat-label>
-            <input matInput formControlName="description" type="text" />
-        </mat-form-field>
-
-        <mat-form-field appearance="fill">
-            <mat-label>{{ 'form.shelve.identifier' | translate }}</mat-label>
-            <input matInput formControlName="productId" type="text" />
-            @if(myForm.get('productId')?.hasError('required')) {
-                <mat-error>{{ 'form.shelve.identifier.error' | translate }}</mat-error>
+            <mat-label>{{ 'form.bar.code' | translate }}</mat-label>
+            <input matInput formControlName="barCode" type="text" />
+            @if(myForm.get('barCode')?.hasError('required')) {
+                <mat-error>{{ 'form.bar.code.error' | translate }}</mat-error>
             }
         </mat-form-field>
 
         <mat-form-field appearance="fill">
             <mat-label>{{ 'form.shelve.code' | translate }}</mat-label>
-            <input matInput formControlName="code" type="text" />
-            @if(myForm.get('code')?.hasError('required')) {
+            <input matInput formControlName="shelveCode" type="text" />
+            @if(myForm.get('shelveCode')?.hasError('required')) {
                 <mat-error>{{ 'form.shelve.code.error' | translate }}</mat-error>
             }
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>{{ 'form.quantity' | translate }}</mat-label>
+            <input matInput formControlName="quantity" type="number" />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>{{ 'form.weight' | translate }}</mat-label>
+            <input matInput formControlName="weight" type="number" />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>{{ 'form.calories' | translate }} (kCal)</mat-label>
+            <input matInput formControlName="calories" type="number" />
         </mat-form-field>
 
         <mat-form-field appearance="fill">
