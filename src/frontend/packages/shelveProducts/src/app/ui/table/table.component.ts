@@ -10,9 +10,14 @@ import { CommonModule, NgClass } from '@angular/common';
 import { MatSortModule, Sort } from '@angular/material/sort';
 import { MatInput } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { InternalizationPipe } from '@portal/library';
+import { I18nService, InternalizationPipe, MF_FRONTEND } from '@portal/library';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatIconModule } from '@angular/material/icon';
+import { ConfirmationModalComponent } from '../confirmation-modal/confirmation-modal.component';
+import { SelectionModel } from '@angular/cdk/collections';
+import { MatDialog } from '@angular/material/dialog';
+import { StatisticsPanelService } from '../statistics-panel/statistics-panel.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-table-component',
@@ -40,11 +45,16 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class TableComponent {
 
+    private readonly statisticsPanelService = inject(StatisticsPanelService);
     private readonly shelveProductService = inject(ShelveProductService);
     private readonly tableService = inject(TableService);
     private readonly sideNavService = inject(SideNavService);
+    private readonly toastr = inject(ToastrService);
+    private readonly dialog = inject(MatDialog);
+    private readonly i18nService = inject(I18nService);
+    private readonly mf = inject(MF_FRONTEND);
 
-    displayedColumns: string[] = ['select', 'Name', 'BarCode', 'ShelveCode', 'Calories', 'Weight', 'InsertDate', 'ExpiryDate', 'daysLeft'];
+    displayedColumns: string[] = ['select', 'Name', 'BarCode', 'ShelveCode', 'Calories', 'Weight', 'InsertDate', 'ExpiryDate', 'daysLeft', 'actions'];
 
     @HostListener('window:resize', ['$event'])
     onResize(event: UIEvent) {
@@ -58,9 +68,9 @@ export class TableComponent {
     private setDisplayedColumn() {
         const width = window.innerWidth;
         if (width < 768) {
-            this.displayedColumns = ['select', 'Name', 'ShelveCode', 'daysLeft'];
+            this.displayedColumns = ['select', 'Name', 'ShelveCode', 'daysLeft', 'actions'];
         } else {
-            this.displayedColumns = ['select', 'Name', 'BarCode', 'ShelveCode', 'Calories', 'Weight', 'InsertDate', 'ExpiryDate', 'daysLeft'];
+            this.displayedColumns = ['select', 'Name', 'BarCode', 'ShelveCode', 'Calories', 'Weight', 'InsertDate', 'ExpiryDate', 'daysLeft', 'actions'];
         }
     }
 
@@ -183,5 +193,40 @@ export class TableComponent {
 
     isActiveRow(row: ShelveProduct) {
         return this.sideNavService.productSelected() === row
+    }
+
+    cloneProduct($event: PointerEvent, row: ShelveProduct) {
+        $event.stopPropagation();
+        this.sideNavService.productSelected.set(row);
+
+        setTimeout(()=> {
+            this.sideNavService.toggleSidenavSource.next();
+        }, 0); //Microtask
+    }
+
+    protected removeProduct($event: PointerEvent, product: ShelveProduct) {
+        $event.stopPropagation();
+
+        const modalMsg =   this.i18nService.translate(this.mf, "remove.single.product", `${product.name} (${product.shelveCode})`);
+
+        const dialogRef = this.dialog.open(ConfirmationModalComponent, {
+            data: {title: this.i18nService.translate(this.mf, "modal.title"), message: modalMsg},
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+            if (result !== undefined) {
+                this.shelveProductService.removeProduct(product.shelveCode).then(
+                    () => {
+                        this.statisticsPanelService.getStatistics();
+                        this.tableService.dataSource.set(this.tableService.dataSource().filter(shelveProduct => shelveProduct.shelveCode !== product.shelveCode));
+                        this.toastr.success(`Product "${product.shelveCode}" was removed.`, '', {
+                            positionClass: 'toast-bottom-left'
+                        });
+                        this.tableService.selection.set(new SelectionModel<ShelveProduct>(true, []));
+                    }
+                )
+            }
+        });
+
     }
 }

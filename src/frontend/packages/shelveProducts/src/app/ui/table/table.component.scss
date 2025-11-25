@@ -52,7 +52,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 300px; /* Adjust as needed */
+        height: 300px;
     }
 
     .search-input-area {
@@ -60,25 +60,25 @@
     }
 
     .products-row {
+        &:nth-child(odd)  { background-color: #ffffff; }
+        &:nth-child(even) { background-color: #f5f5f5; }
+
         &:hover {
             background-color: var(--mat-sys-primary-fixed-dim);
             color: var(--color-highlight);
         }
 
-        &:nth-child(even) {
-            background-color: #f5f5f5;
+        &:has(td.action-cell:hover) {
+            &:nth-child(odd):hover  { background-color: #ffffff; }
+            &:nth-child(even):hover { background-color: #f5f5f5; }
+            color: inherit;
         }
 
-        &:nth-child(odd) {
-            background-color: #ffffff;
-        }
-
-        &:nth-child(even):hover {
-            background-color: var(--mat-sys-primary-fixed-dim);
-        }
-
-        &:nth-child(odd):hover {
-            background-color: var(--mat-sys-primary-fixed-dim);
+        mat-icon {
+            &:hover {
+                color: var(--color-primary);
+                cursor: pointer;
+            }
         }
     }
 

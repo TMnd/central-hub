@@ -30,6 +30,7 @@
     "modal.title": "Remover produto(s)",
     "remove.one.product": "Tem a certeza que quer remover o produto?",
     "remove.multi.product": "Tem a certeza para remover os produtos %s?",
+    "remove.single.product": "Tem a certeza para remover os produto %s?",
     "remove.shelve.product": "Remover productos",
     "add.shelve.product": "Adicionar productos",
     "statistic.header": "Contadores Produtos",
