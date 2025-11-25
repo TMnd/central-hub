@@ -68,7 +68,7 @@ export class TableComponent {
     private setDisplayedColumn() {
         const width = window.innerWidth;
         if (width < 768) {
-            this.displayedColumns = ['select', 'Name', 'ShelveCode', 'daysLeft', 'actions'];
+            this.displayedColumns = ['select', 'ShelveCode', 'daysLeft', 'actions'];
         } else {
             this.displayedColumns = ['select', 'Name', 'BarCode', 'ShelveCode', 'Calories', 'Weight', 'InsertDate', 'ExpiryDate', 'daysLeft', 'actions'];
         }

@@ -18,7 +18,9 @@
         flex-wrap: wrap;
     }
 
-    .red {
-        background-color: #93000a;
+    @media (max-width: 400px) {
+        .body {
+            display: unset;
+        }
     }
 }
