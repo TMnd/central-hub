@@ -140,6 +140,7 @@ export class FormComponent implements OnInit, OnDestroy {
                     this.toastr.success(`Product "${shelveProduct.shelveCode}" was added successfully.`, '', {
                         positionClass: 'toast-bottom-left'
                     });
+                    this.clearForm();
                 })
                 .catch( (error) => {
                     this.toastr.error(error.statusText, '', {
