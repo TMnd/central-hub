@@ -48,7 +48,7 @@ public class ShelveProductValidations {
             sb.append("ATTENTION\n The following products may be expired or nearing expiration.\n");
 
             for(ShelveProductDTO product: shelveProductsByCodeNearExpirationOrExpired) {
-                String shelveProduct = String.format("%s - %s", product.getName(), product.getProductId());
+                String shelveProduct = String.format("%s - %s", product.getName());
                 sb.append(shelveProduct).append("\n");
             }
 
@@ -80,8 +80,7 @@ public class ShelveProductValidations {
             String product = String.format(
                     "%s,%s,%s,%s,%s",
                     shelveProductDTO.getName(),
-                    shelveProductDTO.getProductId(),
-                    shelveProductDTO.getCode(),
+                    shelveProductDTO.getShelveCode(),
                     shelveProductDTO.getExpiryDate(),
                     shelveProductDTO.getDate()
             );

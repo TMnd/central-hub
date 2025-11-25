@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, effect, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, inject, OnDestroy, OnInit } from '@angular/core';
 import { MatFormField, MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -6,7 +6,7 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { MatButton } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDatepicker, MatDatepickerInput, MatDatepickerToggle } from '@angular/material/datepicker';
-import { provideNativeDateAdapter } from '@angular/material/core';
+import { MatOption, provideNativeDateAdapter } from '@angular/material/core';
 import { ShelveProductService } from '../../data-source/shelve-product.service';
 import { ShelveProduct } from '../../interface/shelve-product.interface';
 import { TableService } from '../table/table.service';
@@ -14,6 +14,8 @@ import { ToastrService } from 'ngx-toastr';
 import { SideNavService } from '../../services/side-nav.service';
 import { StatisticsPanelService } from '../statistics-panel/statistics-panel.service';
 import { InternalizationPipe } from '@portal/library';
+import { MatAutocomplete, MatAutocompleteSelectedEvent, MatAutocompleteTrigger } from '@angular/material/autocomplete';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-form-component',
@@ -32,7 +34,10 @@ import { InternalizationPipe } from '@portal/library';
         MatDatepickerInput,
         MatDatepickerToggle,
         MatDatepicker,
-        InternalizationPipe
+        InternalizationPipe,
+        MatAutocomplete,
+        MatOption,
+        MatAutocompleteTrigger
     ],
     providers: [
         ShelveProductService,
@@ -40,7 +45,7 @@ import { InternalizationPipe } from '@portal/library';
         DatePipe
     ]
 })
-export class FormComponent {
+export class FormComponent implements OnInit, OnDestroy {
 
     private readonly fb = inject(FormBuilder);
     private readonly shelveProductService = inject(ShelveProductService);
@@ -53,6 +58,9 @@ export class FormComponent {
     protected today: Date = new Date();
 
     isEditMode = this.sideNavService.isEditMode;
+
+    filteredProductsByBarCode: string[] = [];
+    private subscription: Subscription | undefined;
 
     constructor() {
         effect(() => {
@@ -69,12 +77,36 @@ export class FormComponent {
         });
     }
 
+    ngOnDestroy(): void {
+        if(this.subscription){
+            this.subscription.unsubscribe();
+        }
+    }
+
+    ngOnInit(): void {
+        this.subscription = this.myForm.valueChanges.subscribe(value => {
+            if (value?.barCode) {
+                this.filteredProductsByBarCode = [];
+
+                const barCode = value?.barCode;
+
+                let shelveProducts = this.tableService.dataSource();
+                const filteredProducts = shelveProducts.filter(product => {
+                    return product.barCode.startsWith(barCode);
+                })
+
+                for(const item of filteredProducts) {
+                    this.filteredProductsByBarCode.push(item.barCode);
+                }
+            }
+        });
+    }
+
     protected myForm = this.fb.group({
         name: ['', Validators.required],
         barCode: ['', Validators.required],
         shelveCode: ['', Validators.required],
         expiryDate: ['', Validators.required],
-        quantity: [1, Validators.min(1)],
         weight: [0, Validators.min(0)],
         calories: [0, Validators.min(0)]
     });
@@ -93,7 +125,6 @@ export class FormComponent {
                 expiryDate: this.datePipe.transform(this.myForm.value.expiryDate, 'yyyy-MM-dd') ?? '',
                 date: this.datePipe.transform(new Date(), 'yyyy-MM-dd') ?? '',
                 weight: this.myForm.value.weight ?? 0,
-                quantity: this.myForm.value.quantity ?? 1,
                 calories: this.myForm.value.calories ?? 0,
             }
 
@@ -139,7 +170,6 @@ export class FormComponent {
             expiryDate: this.datePipe.transform(this.myForm.value.expiryDate, 'yyyy-MM-dd') ?? '',
             date: this.datePipe.transform(new Date(), 'yyyy-MM-dd') ?? '',
             calories: 0,
-            quantity: 1,
             weight: 0
         }
 
@@ -162,5 +192,19 @@ export class FormComponent {
                 this.tableService.isLoadingResults.set(false);
             });
 
+    }
+
+    onSelect($event: MatAutocompleteSelectedEvent) {
+        const selectedValue = $event.option.value;
+
+        const shelveProducts = this.tableService.dataSource();
+
+        const product = shelveProducts.filter(product => product.barCode === selectedValue)[0];
+
+        this.myForm.patchValue({
+            barCode: product.barCode,
+            name: product.name,
+            calories: product.calories
+        })
     }
 }

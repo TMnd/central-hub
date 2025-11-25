@@ -8,7 +8,7 @@
     "table.column.quantity": "Quantity",
     "table.column.calories": "Calories",
     "table.column.weight": "Weight",
-    "table.column.weight.tooltip": "Liquid weight",
+    "table.column.weight.tooltip": "Drained net weight",
     "table.search.placeholder": "Search for product",
     "table.no.data": "No data.",
     "form.title": "Add product",
@@ -33,5 +33,7 @@
     "remove.shelve.product": "Delete products",
     "add.shelve.product": "Add products",
     "statistic.header": "Products Counter",
+    "statistic.panel.total": "Total of calories",
+    "statistic.panel.description": "Calories for two people",
     "refresh.products": "Update list"
 }

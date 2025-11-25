@@ -8,7 +8,7 @@
     "table.column.quantity": "Quantidade",
     "table.column.calories": "Calorias",
     "table.column.weight": "Peso",
-    "table.column.weight.tooltip": "Peso líquido",
+    "table.column.weight.tooltip": "Peso líquido escorrido",
     "table.search.placeholder": "Procurar por produto(s)",
     "table.no.data": "No data.",
     "form.title": "Adicionar produtos",
@@ -33,5 +33,7 @@
     "remove.shelve.product": "Remover productos",
     "add.shelve.product": "Adicionar productos",
     "statistic.header": "Contadores Produtos",
+    "statistic.panel.total": "Total de calorias",
+    "statistic.panel.description": "Calorias para duas pessoas",
     "refresh.products": "Atualizar lista"
 }

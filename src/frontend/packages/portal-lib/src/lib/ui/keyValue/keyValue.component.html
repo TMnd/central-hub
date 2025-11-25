@@ -6,6 +6,9 @@
         title="{{ key() }}"
     >
         {{ key() }}
+        @if(subKey()) {
+            <span>{{ subKey() }}</span>
+        }
     </div>
     <div
         class="migration_service_value col-{{keyValueColArea()}} {{ clazz() }}"

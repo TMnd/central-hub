@@ -18,9 +18,9 @@ public class ShelveProductRepository implements PanacheRepository<CatShelveProdu
     public List<ProductCount> findGroupedProductSummaries() {
 
         String query = """
-                SELECT MIN(product_name) AS product_name, COUNT(bar_code) AS product_count
+                SELECT MIN(product_name) AS product_name, COUNT(bar_code) AS product_count, bar_code, SUM(calories) as calories
                 FROM cat_shelve_products
-                GROUP BY product_name;
+                GROUP BY bar_code;
                 """;
 
         return em.createNativeQuery(query, ProductCount.class).getResultList();

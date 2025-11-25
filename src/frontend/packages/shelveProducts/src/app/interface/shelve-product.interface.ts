@@ -4,7 +4,6 @@ export interface ShelveProduct {
     shelveCode: string,
     expiryDate: string,
     date: string,
-    quantity: number,
     calories: number,
     weight: number
 }
@@ -16,5 +15,7 @@ export interface ShelveProductTable extends ShelveProduct {
 
 export interface ShelveProductCount {
     productName: string
-    productCount: string
+    productCount: string,
+    barCode: string,
+    calories: number
 }

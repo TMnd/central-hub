@@ -5,7 +5,7 @@ import {Subject} from 'rxjs';
 @Injectable()
 export class SideNavService {
 
-    defaultShelveProduct: ShelveProduct = {shelveCode: '', date: '', barCode: '', expiryDate: '', name: '', calories: 0, quantity: 1, weight: 0};
+    defaultShelveProduct: ShelveProduct = {shelveCode: '', date: '', barCode: '', expiryDate: '', name: '', calories: 0, weight: 0};
 
     productSelected = signal<ShelveProduct>(this.defaultShelveProduct);
 

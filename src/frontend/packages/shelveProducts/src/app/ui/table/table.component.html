@@ -40,11 +40,6 @@
                 <td mat-cell *matCellDef="let element"> {{element.shelveCode}} </td>
             </ng-container>
 
-            <ng-container matColumnDef="Quantity">
-                <th mat-header-cell *matHeaderCellDef><b>{{ "table.column.quantity" | translate }}</b></th>
-                <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
-            </ng-container>
-
             <ng-container matColumnDef="Calories">
                 <th mat-header-cell *matHeaderCellDef>
                     <b>{{ "table.column.calories" | translate }} (kCal)</b>
@@ -54,7 +49,7 @@
 
             <ng-container matColumnDef="Weight">
                 <th mat-header-cell *matHeaderCellDef>
-                    <b>{{ "table.column.weight" | translate }}</b>
+                    <b>{{ "table.column.weight" | translate }} (g)</b>
                     <mat-icon
                         [matTooltip]="'table.column.weight.tooltip' | translate"
                         matTooltipPosition="above"

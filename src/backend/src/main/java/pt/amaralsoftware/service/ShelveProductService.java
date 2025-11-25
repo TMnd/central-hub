@@ -38,7 +38,6 @@ public class ShelveProductService {
                 shelvedProduct.getShelveCode(),
                 formattedExpirationDate,
                 insertDateFormatted,
-                shelvedProduct.getQuantity(),
                 shelvedProduct.getCalories(),
                 shelvedProduct.getWeight()
         );
@@ -62,7 +61,6 @@ public class ShelveProductService {
             shelveProductDTO.getShelveCode(),
             expiryDate,
             date,
-            shelveProductDTO.getQuantity(),
             shelveProductDTO.getCalories(),
             shelveProductDTO.getWeight()
         );

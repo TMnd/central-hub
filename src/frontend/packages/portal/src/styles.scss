@@ -5,6 +5,10 @@
 html, body { height: 100%; margin: 0; padding: 0; }
 body { margin: 0; font-family: 'Inter', sans-serif; }
 
+.force-white-color {
+    color: var(--color-text)
+}
+
 :root {
     --color-primary-dark: #1A1A1A;
     --color-primary: #FF6900;

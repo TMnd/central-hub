@@ -28,6 +28,39 @@ export class StatisticsPanelComponent {
         return this.statisticsPanelService.statistics()
     });
 
+    totalCalories = computed(() => {
+       const shelveProductCounts = this.statisticsPanelService.statistics();
+       let total = 0;
+
+       for(const statistic of shelveProductCounts) {
+           let calories = statistic.calories ?? 0;
+
+           total += calories;
+       }
+
+       return `${total}`;
+    });
+
+    totalCaloriesStatus = computed(() => {
+        const totalCalories = +this.totalCalories();
+
+        const daysToInConsideration = 96;
+        const minCalories = 1200*daysToInConsideration;
+        const maxCalories = 2400*daysToInConsideration;
+
+        let state = "";
+
+        if (totalCalories < minCalories) {
+            state = "bg-danger";
+        } else if (totalCalories > minCalories && totalCalories <= maxCalories) {
+            state = "bg-warning";
+        } else {
+            state = "bg-success";
+        }
+
+        return state + ' force-white-color';
+    })
+
     constructor() {
         this.statisticsPanelService.getStatistics();
     }

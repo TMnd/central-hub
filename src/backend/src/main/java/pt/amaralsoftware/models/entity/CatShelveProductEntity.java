@@ -19,7 +19,6 @@ public class CatShelveProductEntity extends PanacheEntityBase implements Seriali
     private String shelveCode;
     private ZonedDateTime expirationDate;
     private Date insertDate;
-    private Integer quantity;
     private Integer calories;
     private Integer weight;
 
@@ -32,7 +31,6 @@ public class CatShelveProductEntity extends PanacheEntityBase implements Seriali
             String shelveCode,
             ZonedDateTime expirationDate,
             Date insertDate,
-            Integer quantity,
             Integer calories,
             Integer weight
     ) {
@@ -41,7 +39,6 @@ public class CatShelveProductEntity extends PanacheEntityBase implements Seriali
         this.shelveCode = shelveCode;
         this.expirationDate = expirationDate;
         this.insertDate = insertDate;
-        this.quantity = quantity;
         this.calories = calories;
         this.weight = weight;
     }
@@ -92,14 +89,6 @@ public class CatShelveProductEntity extends PanacheEntityBase implements Seriali
 
     public void setInsertDate(Date insertDate) {
         this.insertDate = insertDate;
-    }
-
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
     }
 
     public Integer getCalories() {

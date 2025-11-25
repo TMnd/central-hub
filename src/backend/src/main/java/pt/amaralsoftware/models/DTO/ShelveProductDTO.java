@@ -6,7 +6,6 @@ public class ShelveProductDTO {
     private String shelveCode;
     private String expiryDate;
     private String date;
-    private Integer quantity;
     private Integer calories;
     private Integer weight;
 
@@ -19,7 +18,6 @@ public class ShelveProductDTO {
             String shelveCode,
             String expiryDate,
             String date,
-            Integer quantity,
             Integer calories,
             Integer weight
     ) {
@@ -28,7 +26,6 @@ public class ShelveProductDTO {
         this.shelveCode = shelveCode;
         this.expiryDate = expiryDate;
         this.date = date;
-        this.quantity = quantity;
         this.calories = calories;
         this.weight = weight;
     }
@@ -71,14 +68,6 @@ public class ShelveProductDTO {
 
     public void setDate(String date) {
         this.date = date;
-    }
-
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
     }
 
     public Integer getCalories() {

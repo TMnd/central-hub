@@ -9,6 +9,7 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 })
 export class KeyValueComponent {
     key = input.required<string>();
+    subKey = input<string>("");
     value = input.required<string>();
     keyValueColArea = input("12");
     clazz = input("");
