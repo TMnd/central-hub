@@ -161,6 +161,16 @@ export class TableComponent {
         const sortedData = [...data].sort((a, b) => {
             const isAsc = sort.direction === 'asc';
             switch (sort.active) {
+                case 'Name':
+                    return this.compare(a.name, b.name, isAsc);
+                case 'BarCode':
+                    return this.compare(a.barCode, b.barCode, isAsc);
+                case 'ShelveCode':
+                    return this.compare(a.shelveCode, b.shelveCode, isAsc);
+                case 'Calories':
+                    return this.compare(a.calories, b.calories, isAsc);
+                case 'Weight':
+                    return this.compare(a.weight, b.weight, isAsc);
                 case 'ExpiryDate':
                     return this.compare(a.expiryDate, b.expiryDate, isAsc);
                 default:
