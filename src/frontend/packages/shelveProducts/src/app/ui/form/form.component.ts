@@ -170,8 +170,8 @@ export class FormComponent implements OnInit, OnDestroy {
             shelveCode: shelveCode!,
             expiryDate: this.datePipe.transform(this.myForm.value.expiryDate, 'yyyy-MM-dd') ?? '',
             date: this.datePipe.transform(new Date(), 'yyyy-MM-dd') ?? '',
-            calories: 0,
-            weight: 0
+            weight: this.myForm.value.weight ?? 0,
+            calories: this.myForm.value.calories ?? 0
         }
 
         this.shelveProductService.updateProduct(shelveCode!, payload)
